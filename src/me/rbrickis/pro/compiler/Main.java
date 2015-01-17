@@ -2,6 +2,7 @@ package me.rbrickis.pro.compiler;
 
 import me.pogostick29dev.pro.block.Class;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -16,6 +17,11 @@ public class Main {
 
         Compiler compiler = new Compiler(clazz);
         byte[] compiled = compiler.compileClass();
-        System.out.write(compiled);
+        FileOutputStream stream = new FileOutputStream("Test.class");
+
+        stream.write(compiled);
+
+        stream.close();
+
     }
 }
