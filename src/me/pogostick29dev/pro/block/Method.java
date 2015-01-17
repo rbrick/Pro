@@ -20,7 +20,16 @@ public class Method extends Block {
 		this.params = params;
 	}
 
-	@Override
+
+    public Type getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
 	public void run() {
 		invoke();
 	}
