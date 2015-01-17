@@ -29,10 +29,6 @@ public class Compiler {
     }
 
 
-    public void compileForLoop() {
-        // TODO
-    }
-
     public void compileMethod(Method method) {
 
     }
@@ -40,7 +36,8 @@ public class Compiler {
     public byte[] compileClass() {
         writer.visit(49, Opcodes.ACC_PUBLIC + Opcodes.ACC_SUPER, clazz.getName(), null, "java/lang/Object", null);
         writer.visitSource(clazz.getName() + ".java", null);
-        writer.visitEnd();
+
+     
         return writer.toByteArray();
     }
 
