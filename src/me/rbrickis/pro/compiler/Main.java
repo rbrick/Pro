@@ -1,5 +1,6 @@
 package me.rbrickis.pro.compiler;
 
+import me.pogostick29dev.pro.Parameter;
 import me.pogostick29dev.pro.Type;
 import me.pogostick29dev.pro.block.Class;
 import me.pogostick29dev.pro.block.Method;
@@ -17,7 +18,10 @@ public class Main {
     public static void main(String... args) throws IOException {
         Class clazz = new Class("Test");
 
-        Method method = new Method(clazz, "test", Type.VOID, null);
+        Method method = new Method(clazz, "test", Type.VOID, new Parameter[] {
+                new Parameter(Type.STRING,"example"),
+                new Parameter(Type.INTEGER,"example1")
+        });
 
         clazz.addBlock(method);
 

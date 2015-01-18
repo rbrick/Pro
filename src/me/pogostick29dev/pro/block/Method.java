@@ -29,6 +29,10 @@ public class Method extends Block {
         return name;
     }
 
+    public Parameter[] getParams() {
+        return params;
+    }
+
     @Override
 	public void run() {
 		invoke();

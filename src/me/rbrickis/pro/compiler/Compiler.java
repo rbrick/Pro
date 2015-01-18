@@ -1,5 +1,6 @@
 package me.rbrickis.pro.compiler;
 
+import me.pogostick29dev.pro.Parameter;
 import me.pogostick29dev.pro.block.Block;
 import me.pogostick29dev.pro.block.Class;
 import me.pogostick29dev.pro.block.Method;
@@ -33,31 +34,44 @@ public class Compiler {
 
     public void compileMethod(Method method) {
 
-        int type = 0;
+        String type;
 
         switch (method.getType()) {
             case INTEGER:
-                type = Type.INT;
+                type = "I";
                 break;
             case STRING:
-                type = Type.OBJECT;
+                type = "Ljava/lang/String;";
                 break;
             case VOID:
-                type = Type.VOID;
+                type = "V";
                 break;
             default:
-                type = Type.VOID;
+                type = "V";
                 break;
         }
 
+        String params = "";
 
-        MethodVisitor mv = writer.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, method.getName(), "()V", null, null);
+
+        for(Parameter p : method.getParams()) {
+            if(p.getType() == me.pogostick29dev.pro.Type.STRING) {
+               params += "Ljava/lang/String;";
+            } else {
+               params += "I";
+            }
+        }
+
+        MethodVisitor mv = writer.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, method.getName(), "("+ params +")" + type, null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 0);
 
         mv.visitInsn(Opcodes.RETURN);
 
+
+
         mv.visitEnd();
+
 
 
     }
